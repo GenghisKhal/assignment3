@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>New Appointment</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>Appointment ID</label>
+        <input type="number" name="appointment_id" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Caregiver User ID</label>
+        <input type="number" name="caregiver_user_id" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Member User ID</label>
+        <input type="number" name="member_user_id" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Date</label>
+        <input type="date" name="appointment_date" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Time</label>
+        <input type="time" name="appointment_time" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Work Hours</label>
+        <input type="number" name="work_hours" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Create Appointment</button>
+</form>
+{% endblock %}

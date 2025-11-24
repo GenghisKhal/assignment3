@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Address for User {{ user_id }}</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>House Number</label>
+        <input type="text" name="house_number" class="form-control"
+            value="{{ address.house_number if address else '' }}">
+    </div>
+    <div class="mb-3">
+        <label>Street</label>
+        <input type="text" name="street" class="form-control" value="{{ address.street if address else '' }}">
+    </div>
+    <div class="mb-3">
+        <label>Town</label>
+        <input type="text" name="town" class="form-control" value="{{ address.town if address else '' }}">
+    </div>
+    <button type="submit" class="btn btn-primary">Save Address</button>
+    <a href="/users" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

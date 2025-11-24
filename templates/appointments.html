@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Appointments</h2>
+<a href="/appointment/add" class="btn btn-success mb-3">New Appointment</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Caregiver ID</th>
+            <th>Member ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Hours</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for appt in appointments %}
+        <tr>
+            <td>{{ appt.appointment_id }}</td>
+            <td>{{ appt.caregiver_user_id }}</td>
+            <td>{{ appt.member_user_id }}</td>
+            <td>{{ appt.appointment_date }}</td>
+            <td>{{ appt.appointment_time }}</td>
+            <td>{{ appt.work_hours }}</td>
+            <td>
+                <span
+                    class="badge bg-{{ 'success' if appt.status == 'Accepted' else 'warning' if appt.status == 'Pending' else 'danger' }}">{{
+                    appt.status }}</span>
+            </td>
+            <td>
+                <form action="/appointment/status/{{ appt.appointment_id }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="status" value="Accepted">
+                    <button class="btn btn-sm btn-success">Accept</button>
+                </form>
+                <form action="/appointment/status/{{ appt.appointment_id }}" method="POST" style="display:inline;">
+                    <input type="hidden" name="status" value="Declined">
+                    <button class="btn btn-sm btn-warning">Decline</button>
+                </form>
+                <form action="/appointment/delete/{{ appt.appointment_id }}" method="POST" style="display:inline;">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Delete?');">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
