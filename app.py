@@ -1,7 +1,6 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from sqlalchemy import text
 
 # 1. FLASK SETUP
@@ -17,7 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 # 3. DATABASE MODELS (ORM)
 
