@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>User Directory</h2>
+<a href="/caregiver/add" class="btn btn-success mb-3">Add New Caregiver</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.user_id }}</td>
+            <td>{{ user.given_name }} {{ user.surname }}</td>
+            <td>{{ user.city }}</td>
+            <td><span class="badge bg-info">{{ user.role }}</span></td>
+            <td>
+                {% if user.role == 'Caregiver' %}
+                <a href="/caregiver/edit/{{ user.user_id }}" class="btn btn-sm btn-warning">Edit</a>
+                {% endif %}
+                <form action="/delete_user/{{ user.user_id }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this user?');">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Job Listings</h2>
+<a href="/job/add" class="btn btn-success mb-3">Post New Job</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Req Type</th>
+            <th>Details</th>
+            <th>Posted On</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.job_id }}</td>
+            <td>{{ job.required_caregiving_type }}</td>
+            <td>{{ job.other_requirements }}</td>
+            <td>{{ job.date_posted }}</td>
+            <td>
+                <form action="/job/delete/{{ job.job_id }}" method="POST">
+                    <button class="btn btn-sm btn-danger" onclick="return confirm('Delete Job?');">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

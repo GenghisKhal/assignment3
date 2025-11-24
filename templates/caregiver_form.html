@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{{ action }} Caregiver</h2>
+<form method="POST">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label>User ID</label>
+            <input type="number" name="user_id" class="form-control" value="{{ user.user_id if user else '' }}" {% if action=='Edit' %}readonly{% endif %} required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" value="{{ user.email if user else '' }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Given Name</label>
+            <input type="text" name="given_name" class="form-control" value="{{ user.given_name if user else '' }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Surname</label>
+            <input type="text" name="surname" class="form-control" value="{{ user.surname if user else '' }}" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>City</label>
+            <input type="text" name="city" class="form-control" value="{{ user.city if user else '' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Phone</label>
+            <input type="text" name="phone_number" class="form-control" value="{{ user.phone_number if user else '' }}">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Caregiving Type</label>
+            <select name="caregiving_type" class="form-select">
+                <option value="Babysitter" {% if caregiver and caregiver.caregiving_type=='Babysitter' %}selected{% endif %}>Babysitter</option>
+                <option value="Elderly Care" {% if caregiver and caregiver.caregiving_type=='Elderly Care' %}selected{% endif %}>Elderly Care</option>
+            </select>
+        </div>
+        <div class="col-md-6 mb-3">
+            <label>Hourly Rate ($)</label>
+            <input type="number" step="0.1" name="hourly_rate" class="form-control" value="{{ caregiver.hourly_rate if caregiver else '' }}">
+        </div>
+        
+        {% if action == 'Add' %}
+        <div class="col-md-6 mb-3">
+            <label>Password</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+        <div class="col-md-12 mb-3">
+            <label>Bio</label>
+            <textarea name="profile_description" class="form-control"></textarea>
+        </div>
+        <input type="hidden" name="photo" value="default.jpg">
+        <input type="hidden" name="gender" value="Unknown">
+        {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">{{ action }} Caregiver</button>
+</form>
+{% endblock %}

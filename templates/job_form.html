@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Post a Job</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label>Job ID</label>
+        <input type="number" name="job_id" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Member User ID (Who is posting?)</label>
+        <input type="number" name="member_user_id" class="form-control" required placeholder="Enter an existing User ID">
+    </div>
+    <div class="mb-3">
+        <label>Required Type</label>
+        <select name="required_caregiving_type" class="form-select">
+            <option value="Babysitter">Babysitter</option>
+            <option value="Elderly Care">Elderly Care</option>
+            <option value="Playmate">Playmate</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Requirements</label>
+        <textarea name="other_requirements" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Date Posted</label>
+        <input type="date" name="date_posted" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Job</button>
+</form>
+{% endblock %}
